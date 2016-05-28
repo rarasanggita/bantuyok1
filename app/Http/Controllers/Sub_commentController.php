@@ -13,7 +13,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use DB;
 
-class Comment extends Controller
+class Sub_commentController extends Controller
 {
     /**
      * Display a listing of the resource.

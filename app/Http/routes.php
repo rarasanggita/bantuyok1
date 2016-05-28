@@ -6,24 +6,24 @@
 // });
 
 Route::get('/','MainController@home');
-Route::get('/ajar','Lecture@ajar');
+Route::get('/ajar','LectureController@ajar');
 
 // raras
-Route::get('/profile', 'Profile@profile');
-Route::get('/thread', 'Thread@thread');
+Route::get('/profile', 'UserController@profile');
+Route::get('/thread', 'ThreadController@thread');
 
 // VANIA
 Route::get('/home','MainController@home');
 Route::get('/home#kesini','MainController@homeThr');
 
-Route::get('/signup','CUser@signup');
-Route::post('/signup','CUser@signupvalidate');
+Route::get('/signup','UserController@signup');
+Route::post('/signup','UserController@signupvalidate');
 
-Route::get('/petugas','Staff@petugas');
-Route::get('/petugas/login','Staff@login');
-Route::post('/petugas/login','Staff@loginvalidation');
+Route::get('/petugas','StaffController@petugas');
+Route::get('/petugas/login','StaffController@login');
+Route::post('/petugas/login','StaffController@loginvalidation');
 
-Route::post('/login','User@loginvalidation');
+Route::post('/login','UserController@loginvalidation');
 
-Route::get('/threadAdd','Thread@formthread');
-Route::post('/threadAdd','Thread@addThread');
+Route::get('/threadAdd','ThreadController@formthread');
+Route::post('/threadAdd','ThreadController@addThread');

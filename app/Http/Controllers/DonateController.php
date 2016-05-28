@@ -13,35 +13,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use DB;
 
-class Lecture extends Controller
+class DonateController extends Controller
 {
-
-    // TAMBAHAN
-    public function ajar()
-    {
-        $var = User::find(1);
-        
-        $users = DB::table('users')->get();
-
-        foreach ($users as $user)
-        {
-            // var_dump($user->name);
-        }
-
-        //$panggil_user = User::all();
-
-        // echo"<pre>";
-        // var_dump($var->NAMA_USER);
-        // echo"</pre>";
-        // exit();
-        $model_foto = $var->photo;
-        // var_dump($model_foto);
-
-        return view('ajar',['foto'=>$model_foto]);
-    }
-
-
-
     /**
      * Display a listing of the resource.
      *

@@ -46,13 +46,15 @@
                 <div class="modal-body" style="padding:40px 50px;">
                     <form role="form" action="login" method="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="form-group">
+                        <div class="form-group @if ($errors->has('username')) has-error @endif">
                             <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Enter username">
+                            <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+                            @if ($errors->has('username')) <p class="help-block">{{ $errors->first('username') }}</p> @endif 
                         </div>
-                        <div class="form-group">
+                        <div class="form-group @if ($errors->has('password')) has-error @endif">
                             <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                            <input type="password" class="form-control" id="psw" placeholder="Enter password">
+                            <input type="password" class="form-control" id="psw" placeholder="Enter password" name="password">
+                            @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
                         </div>
                         <div class="checkbox">
                             <label><input type="checkbox" value="" checked>Remember me</label>

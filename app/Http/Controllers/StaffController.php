@@ -11,16 +11,20 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-use Validator, Input, Redirect, Hash, DB;
-use App\User;
+use Validator, Input, Redirect, Hash, DB; 
 
-class CUser extends Controller
+class StaffController extends Controller
 {
-    public function signup()
+
+    public function petugas()
     {
-        return view('signup');
+        return view('petugas');
     }
 
+    public function login()
+    {
+        return view('loginpetugas');
+    }
 
     public function loginvalidation()
     {
@@ -31,7 +35,7 @@ class CUser extends Controller
         $validator = Validator::make(Input::all(), $var);
         if($validator->fails())
         {
-            return Redirect::to('home')
+            return Redirect::to('petugas/login')
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));
         }
@@ -42,64 +46,13 @@ class CUser extends Controller
                 'password'  => Input::get('psw'),
             );
             if (Auth::attempt(array('username'=>$userdata['username'],'password'=>$userdata['password']))){
-                return Redirect::to('thread');
+                return Redirect::to('petugas');
             }
             else{
-                return Redirect::to('home');
+                return Redirect::to('petugas/login');
             }
         }
     }
-
-        public function signupvalidate()
-    {
-        $var = array(
-            'name'      => 'required',
-            'username'  =>  'required|max:15|unique:users',
-            'email'     =>  'required|email|unique:users',
-            'password'  => 'required|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).+$/',
-            'password_confirm'  =>  'required|same:password'
-        );
-
-        $valid1 =Validator::make(Input::all(),$var);
-
-        if($valid1->fails())
-        {
-//          var_dump("gagal");
-//          exit();
-
-            // $messages1 = $valid1->messages();
-
-            return Redirect::to('signup')
-                ->withErrors($valid1)
-                ->withInput(Input::except('password'));
-
-        }
-        else
-        {
-            $user= new User;
-            $user->name=Input::get('name');
-            $user->username=Input::get('username');
-            $user->email=Input::get('email');
-            $user->phone=Input::get('phone');
-            $user->password=Hash::make(Input::get('password'));
-//            Auth::loginUsingUsername($username);
-            if($user->save()){
-                return Redirect::to('/');
-            }
-            else{
-                return Redirect::to('signup')
-                ->withErrors($valid1)
-                ->withInput(Input::except('password'));
-            }
-
-        }
-    }
-
-    public function profile()
-    {
-        return view('profile');
-    }
-
     /**
      * Display a listing of the resource.
      *
