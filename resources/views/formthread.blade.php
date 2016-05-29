@@ -20,11 +20,11 @@
     @endif -->
 
     <!-- FORM STARTS HERE -->
-        <form method="POST" action="threadAdd" novalidate class="add-thread-form">
+        <form method="POST" action="{{ route('threadAdd.view')}}" novalidate class="add-thread-form">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group @if ($errors->has('judul')) has-error @endif">
                 <label for="judul">Judul Thread</label>
-                <input type="text" id="judul" class="form-control" name="name" placeholder="Apa judul thread Anda?" value="{{ Input::old('judul') }}">
+                <input type="text" id="judul" class="form-control" name="judul" placeholder="Apa judul thread Anda?" value="{{ Input::old('judul') }}">
             @if ($errors->has('judul')) <p class="help-block">{{ $errors->first('judul') }}</p> @endif    
             </div>
 

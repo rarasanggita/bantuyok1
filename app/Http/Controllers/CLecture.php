@@ -11,35 +11,23 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-use DB;
+use Validator, Input, Redirect, Hash, DB; 
+use App\Thread;
+use File;
+use Response;
+use Auth;
 
-class LectureController extends Controller
+class CLecture extends Controller
 {
 
-    // TAMBAHAN
-    public function ajar()
+    public function addLectures($thread_id)
     {
-        $var = User::find(1);
-        
-        $users = DB::table('users')->get();
-
-        foreach ($users as $user)
-        {
-            // var_dump($user->name);
-        }
-
-        //$panggil_user = User::all();
-
-        // echo"<pre>";
-        // var_dump($var->NAMA_USER);
-        // echo"</pre>";
-        // exit();
-        $model_foto = $var->photo;
-        // var_dump($model_foto);
-
-        return view('ajar',['foto'=>$model_foto]);
+        $thread = Thread::find($thread_id);
+        $user = Auth::user()->id;
+        // dd($user);
+        $thread->lectures()->attach($user);
+        return redirect()->back();
     }
-
 
 
     /**

@@ -11,7 +11,7 @@ class Thread extends Model
     protected $fillable = ['title','school_name','address','phone','description','photo','date'];
 
     public function user(){
-        return $this->belongsToMany('App\User','thread_user','thread_id','user_id');
+        return $this->belongsTo('App\User','user_id', 'id');
     }
     public function donates(){
         return $this->hasMany('App\Donate','thread_id','id');
@@ -20,6 +20,6 @@ class Thread extends Model
         return $this->hasMany('App\Comment','thread_id','id');
     }
     public function lectures(){
-        return $this->hasMany('App\Lecture','thread_id','id');
+        return $this->belongsToMany('App\User', 'thread_user', 'thread_id', 'user_id');
     }
 }

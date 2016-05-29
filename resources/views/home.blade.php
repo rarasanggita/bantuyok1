@@ -2,7 +2,7 @@
 
 @section('title','Home')
 @section('isi')
-
+<br><br>
 <div class="col-sm-12">
 <div class="col-sm-2"></div>
 <div class="container col-sm-8">
@@ -51,175 +51,24 @@
 <div id="threads" class="col-sm-12"><br><br></div>
 
 <div id="thread">
-    <div class="judul">Thread<a href="threadAdd"><img src="{{URL::to('img/add.png')}}" class="ajar-size"/></a></div>
+    <div class="judul">Thread<a href="{{ route('threadAdd.view')}}"><img src="{{URL::to('img/add.png')}}" class="ajar-size"/></a></div>
     <div class="row peng-row">
       <div class="col-sm-2"></div>
       <div class="col-md-8">
 
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/1.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="thread">Donasi <br> Rp 1.000.000<br>Lokasi <br> Keputih</a>
-                </div>
-                <br>
-            </div>
-        </div>
 
+@foreach($threadz as $thr)
         <div class="col-sm-3">
             <div class="hovereffect">
-                <img src="{{URL::to('img/2.jpg')}}"  class="img-responsive" alt="">
+                <img src="{{ route('getImageThr.view', ['filename' => $thr->photo ]) }}"  class="img-responsive" alt="">
                 <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 10.000.000<br>Lokasi <br> Keputih lala</a>
+                   <h2>{{ $thr->school_name }}</h2>
+                   <a class="info" href="{{ route('thread.view', ['id' => $thr->id]) }}">Donasi <br> Rp 1.000.000<br>Lokasi <br>{{ $thr->address }}</a>
                 </div>
                 <br>
             </div>
         </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/3.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 100.000.000<br>Lokasi <br> Keputih lala lili lulu ehehehehe</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/4.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 100.000.000<br>Lokasi <br> Keputih lala lili lulu ehehehehe</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/5.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 100.000.000<br>Lokasi <br> Keputih lala lili lulu ehehehehe</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/1.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 1.000.000<br>Lokasi <br> Keputih</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/2.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 10.000.000<br>Lokasi <br> Keputih lala</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/3.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 100.000.000<br>Lokasi <br> Keputih lala lili lulu ehehehehe</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/4.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 100.000.000<br>Lokasi <br> Keputih lala lili lulu ehehehehe</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/5.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 100.000.000<br>Lokasi <br> Keputih lala lili lulu ehehehehe</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/1.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 1.000.000<br>Lokasi <br> Keputih</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/2.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 10.000.000<br>Lokasi <br> Keputih lala</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/3.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 100.000.000<br>Lokasi <br> Keputih lala lili lulu ehehehehe</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/4.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 100.000.000<br>Lokasi <br> Keputih lala lili lulu ehehehehe</a>
-                </div>
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="hovereffect">
-                <img src="{{URL::to('img/5.jpg')}}"  class="img-responsive" alt="">
-                <div class="overlay">
-                   <h2>sekolah AA</h2>
-                   <a class="info" href="#">Donasi <br> Rp 100.000.000<br>Lokasi <br> Keputih lala lili lulu ehehehehe</a>
-                </div>
-                <br>
-            </div>
-        </div>
+@endforeach
 
       </div>
       <div class="col-sm-2"></div>

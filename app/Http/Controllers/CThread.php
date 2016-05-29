@@ -12,13 +12,21 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use Validator, Input, Redirect, Hash, DB; 
+use App\Thread;
+use App\Comment;
+use File;
+use Response;
+use Auth;
 
-class ThreadController extends Controller
+class CThread extends Controller
 {
 
-    public function thread()
+    public function thread($id)
     {
-        return view('thread');
+        $thread = Thread::find($id);
+        $com = Comment::where('thread_id', $id) -> get();         
+        // dd($thread->user);
+        return view('thread', ['thread' => $thread , 'comm' => $com]);
     }
     
     public function formthread()
@@ -29,7 +37,7 @@ class ThreadController extends Controller
     public function addThread()
     {
         $var = array(
-            'judul'      => 'required',
+            'judul'  => 'required',
             'nama'  =>  'required',
             'alamat' =>  'required',
             'phone'  => 'required',
@@ -57,8 +65,9 @@ class ThreadController extends Controller
             $thread->address=Input::get('alamat');
             $thread->phone=Input::get('phone');
             $thread->description=Input::get('keterangan');
+            $thread->user_id=Auth::user()->id;
 //            Auth::loginUsingUsername($username);
-            if($user->save()){
+            if($thread->save()){
                 return Redirect::to('home');
             }
             else{
@@ -69,6 +78,19 @@ class ThreadController extends Controller
 
         }
     }
+
+    public function getImages($filename)
+    {
+        $path = storage_path() .'/img'. '/' . $filename;
+        // dd($path);
+        if(!File::exists($path)) abort(404);
+        $file = File::get($path);
+        $type = File::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+        return $response;
+    }
+
 
     /**
      * Display a listing of the resource.

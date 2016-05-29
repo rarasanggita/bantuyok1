@@ -12,47 +12,50 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use Validator, Input, Redirect, Hash, DB; 
+use App\Sub_comment;
+use File;
+use Response;
+use Auth;
 
-class StaffController extends Controller
+
+class CSub_comment extends Controller
 {
+    public function postComment(){
 
-    public function petugas()
-    {
-        return view('petugas');
-    }
-
-    public function login()
-    {
-        return view('loginpetugas');
-    }
-
-    public function loginvalidation()
-    {
         $var = array(
-            'username'  =>  'required',
-            'password'  => 'required',
+            'subCom'  => 'required',
         );
-        $validator = Validator::make(Input::all(), $var);
-        if($validator->fails())
+
+        $valid1 =Validator::make(Input::all(),$var);
+        // dd($valid1);
+        if($valid1->fails())
         {
-            return Redirect::to('petugas/login')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+
+            return redirect()->route('thread.view')
+                ->withErrors($valid1);
+
         }
         else
         {
-            $userdata = array(
-                'username'     => Input::get('username'),
-                'password'  => Input::get('psw'),
-            );
-            if (Auth::attempt(array('username'=>$userdata['username'],'password'=>$userdata['password']))){
-                return Redirect::to('petugas');
+            $com= new Sub_comment;
+            $com->sub_comment=Input::get('subCom');
+            $com->user_id=Auth::user()->id;
+            $com->comment_id=Input::get('comId');
+
+            // dd($com);
+//            Auth::loginUsingUsername($username);
+            if($com->save()){
+                return redirect()->route('thread.view' , ['id' => Input::get('idThread')]);
             }
             else{
-                return Redirect::to('petugas/login');
+                return redirect()->route('root.view')
+                ->withErrors($valid1)
+                ->withInput(Input::all());
             }
+
         }
     }
+
     /**
      * Display a listing of the resource.
      *

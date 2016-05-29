@@ -31,7 +31,7 @@
     @endif -->
 
     <!-- FORM STARTS HERE -->
-        <form method="POST" action="signup" novalidate class="signup-form">
+        <form method="POST" action="{{ route('signup.view')}}" novalidate class="signup-form">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group @if ($errors->has('name')) has-error @endif">
                 <label for="name">Name</label>

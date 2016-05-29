@@ -23,7 +23,7 @@
         </div>
 
     <!-- FORM STARTS HERE -->
-        <form method="POST" action="login" novalidate class="signup-form">
+        <form method="POST" action="{{ route('login.view')}}" novalidate class="signup-form">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div class="form-group @if ($errors->has('username')) has-error @endif">

@@ -11,18 +11,21 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use DB;
+use App\Thread;
 
 class MainController extends Controller
 {
 
     public function home()
     {
-        return view('home');
+    	$threadz = Thread::all();
+
+        return view('home')->with('threadz', $threadz);
     }
 
     public function homeThr()
     {
-    	return view('home#threads');
+    	return view('home#threadd');
     }
 
 }

@@ -17,7 +17,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="petugas"><img src="{{URL::to('img/logo.png')}}" class="img-responsive" width="90" height="39"></a>
+            <a class="navbar-brand" href="{{ route('petugas.view')}}"><img src="{{URL::to('img/logo.png')}}" class="img-responsive" width="90" height="39"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
@@ -31,7 +31,7 @@
 <div class="container-fluid">
     <div class="row content">
         <div class="col-sm-3 sidenav hidden-xs">
-            <a href="petugas"><img src="{{URL::to('img/logo.png')}}" class="img-responsive" width="300" height="128"></a>
+            <a href="{{ route('petugas.view')}}"><img src="{{URL::to('img/logo.png')}}" class="img-responsive" width="300" height="128"></a>
             <ul class="nav nav-pills nav-stacked">
                 <li><h2><a href="#thread" onclick="navAdmin(1)" id="adm-thread"><span class="glyphicon glyphicon-book"></span> Thread</a></h2></li>
                 <li><h2><a href="#donasi" onClick="navAdmin(2)" id="adm-donasi"><span class="glyphicon glyphicon-piggy-bank"></span> Donasi</a></h2></li>

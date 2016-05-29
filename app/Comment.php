@@ -16,4 +16,7 @@ class Comment extends Model
     public function thread(){
         return $this->belongsTo('App\Thread','thread_id','id');
     }
+    public function subComments(){
+    	return $this->hasMany('App\Sub_comment', 'comment_id', 'id');
+    }
 }
